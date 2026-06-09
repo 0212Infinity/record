@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>广州天气 AI 预测</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  </head>
+  <body>
+    <main class="page">
+      <section class="hero">
+        <div>
+          <p class="eyebrow">Guangzhou Weather AI</p>
+          <h1>广州天气 AI 预测面板</h1>
+          <p class="lede">基于历史 7 日预报快照训练的本地模型，对最新预报做温度、降水和天气类型修正。</p>
+        </div>
+        <button id="refreshButton" class="refresh-button" type="button">刷新模型缓存</button>
+      </section>
+
+      <section class="summary-grid">
+        <article class="panel stat-panel"><span>城市</span><strong id="cityValue">-</strong></article>
+        <article class="panel stat-panel"><span>数据范围</span><strong id="rangeValue">-</strong></article>
+        <article class="panel stat-panel"><span>有效样本</span><strong id="rowsValue">-</strong></article>
+        <article class="panel stat-panel"><span>最新快照</span><strong id="latestValue">-</strong></article>
+      </section>
+
+      <section class="content-grid">
+        <article class="panel wide-panel">
+          <div class="panel-header">
+            <div>
+              <p class="panel-kicker">7 天预测</p>
+              <h2>AI 修正 vs 原始预报</h2>
+            </div>
+          </div>
+          <div id="forecastCards" class="forecast-cards"></div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-header">
+            <div>
+              <p class="panel-kicker">回测指标</p>
+              <h2>历史评估</h2>
+            </div>
+          </div>
+          <div id="metricsGrid" class="metrics-grid"></div>
+        </article>
+
+        <article class="panel wide-panel">
+          <div class="panel-header">
+            <div>
+              <p class="panel-kicker">趋势图</p>
+              <h2>温度与降水</h2>
+            </div>
+          </div>
+          <div class="charts-grid">
+            <div class="chart-card">
+              <h3>未来 7 天温度</h3>
+              <canvas id="tempChart" width="640" height="260"></canvas>
+            </div>
+            <div class="chart-card">
+              <h3>未来 7 天降水</h3>
+              <canvas id="precipChart" width="640" height="260"></canvas>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel wide-panel">
+          <div class="panel-header">
+            <div>
+              <p class="panel-kicker">数据质量</p>
+              <h2>异常快照</h2>
+            </div>
+          </div>
+          <div id="qualitySummary" class="quality-summary"></div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>抓取日期</th>
+                  <th>原因</th>
+                  <th>daily 数量</th>
+                </tr>
+              </thead>
+              <tbody id="qualityTable"></tbody>
+            </table>
+          </div>
+        </article>
+      </section>
+    </main>
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+  </body>
+</html>

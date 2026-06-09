@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+models/
+server.log
+server.err
+
+#idea
+.venv/
+.idea/
+/idea/
+*.ipr
+*.iml
+*.iws

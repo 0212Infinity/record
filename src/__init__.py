@@ -1,0 +1,1 @@
+"""Weather AI project package."""

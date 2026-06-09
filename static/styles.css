@@ -1,0 +1,277 @@
+:root {
+  --bg: #f6f1e7;
+  --panel: #fffaf0;
+  --ink: #1f1a14;
+  --muted: #6c6258;
+  --line: #decfb7;
+  --accent: #c75c2c;
+  --accent-cool: #2f5fb3;
+  --accent-deep: #254f58;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at top left, rgba(199, 92, 44, 0.16), transparent 28%),
+    radial-gradient(circle at bottom right, rgba(47, 95, 179, 0.14), transparent 24%),
+    var(--bg);
+}
+
+.page {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 32px 20px 56px;
+}
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 24px;
+  padding: 28px;
+  background: linear-gradient(135deg, rgba(255, 250, 240, 0.94), rgba(255, 244, 218, 0.9));
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.eyebrow,
+.panel-kicker {
+  margin: 0 0 8px;
+  color: var(--muted);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0;
+}
+
+.hero h1,
+.panel h2,
+.chart-card h3 {
+  margin: 0;
+}
+
+.hero h1 {
+  font-size: clamp(32px, 5vw, 54px);
+  line-height: 0.95;
+  max-width: 10ch;
+}
+
+.lede {
+  max-width: 56ch;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.refresh-button {
+  border: 0;
+  border-radius: 8px;
+  background: var(--ink);
+  color: #fffaf0;
+  padding: 12px 18px;
+  font: inherit;
+  cursor: pointer;
+}
+
+.refresh-button:disabled {
+  opacity: 0.65;
+  cursor: progress;
+}
+
+.summary-grid,
+.content-grid,
+.charts-grid,
+.metrics-grid,
+.forecast-cards,
+.quality-summary {
+  display: grid;
+}
+
+.summary-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.content-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 18px;
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.wide-panel {
+  grid-column: 1 / -1;
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.stat-panel span,
+.metric-card span,
+.forecast-list dt {
+  color: var(--muted);
+}
+
+.stat-panel strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 24px;
+}
+
+.forecast-cards {
+  grid-template-columns: repeat(7, minmax(150px, 1fr));
+  gap: 12px;
+}
+
+.forecast-card,
+.metric-card,
+.chart-card {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 14px;
+}
+
+.forecast-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.forecast-card h3 {
+  margin: 10px 0 12px;
+  font-size: 24px;
+}
+
+.forecast-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+}
+
+.forecast-list div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 14px;
+}
+
+.forecast-list dd,
+.forecast-list dt {
+  margin: 0;
+}
+
+.metrics-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.metric-card strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 28px;
+}
+
+.charts-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.chart-card canvas {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.quality-summary {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.quality-pill {
+  padding: 10px 12px;
+  border-radius: 999px;
+  background: rgba(37, 79, 88, 0.08);
+  color: var(--accent-deep);
+  text-align: center;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 10px 8px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+}
+
+.error-banner {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  max-width: 360px;
+  padding: 14px 18px;
+  border-radius: 8px;
+  background: #7f1d1d;
+  color: #fff;
+}
+
+@media (max-width: 1100px) {
+  .summary-grid,
+  .charts-grid,
+  .content-grid,
+  .quality-summary {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .forecast-cards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .page,
+  .hero,
+  .summary-grid,
+  .content-grid,
+  .charts-grid,
+  .metrics-grid,
+  .quality-summary,
+  .forecast-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    align-items: start;
+    flex-direction: column;
+  }
+
+  .hero h1 {
+    max-width: none;
+  }
+}
